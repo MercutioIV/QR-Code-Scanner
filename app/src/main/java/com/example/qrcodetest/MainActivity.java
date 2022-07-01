@@ -70,6 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void requestCameraAccess() {
         Toast.makeText(MainActivity.this, "Need Camera Permissions", Toast.LENGTH_SHORT).show();
-        ActivityCompat.requestPermissions(this, CAMERA_SERVICE.split(""), CAMERA_ACCESS_CODE);
+        //ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, CAMERA_ACCESS_CODE);
     }
 }
