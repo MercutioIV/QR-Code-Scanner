@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         // This is what will happen when the code is scanned
-                        Toast.makeText(MainActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, result.getText(), Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -69,7 +69,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void requestCameraAccess() {
-        Toast.makeText(MainActivity.this, "Need Camera Permissions", Toast.LENGTH_SHORT).show();
-        //ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, CAMERA_ACCESS_CODE);
+        Toast.makeText(MainActivity.this, "Need Camera Access", Toast.LENGTH_SHORT).show();
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_ACCESS_CODE);
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        int permission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this,"You need the camera to use this app!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
